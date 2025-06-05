@@ -1,9 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yuri Miranda - Desenvolvedor Front-End</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init({
+                publicKey: "YaEGWAVoOevq60fzD",
+            });
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById('contact-form').addEventListener('submit', function (event) {
+                event.preventDefault();
+                // these IDs from the previous steps
+                emailjs.sendForm('service_qnwx91b', 'template_t2r5w8w', this)
+                    .then(() => {
+                        console.log('SUCCESS!');
+                    }, (error) => {
+                        console.log('FAILED...', error);
+                    });
+            });
+        }
+    </script>
     <style>
         * {
             margin: 0;
@@ -40,8 +64,17 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
-            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 1;
+            }
         }
 
         /* Header com glassmorphism */
@@ -400,6 +433,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -407,8 +441,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
 
         /* Responsivo */
@@ -416,16 +457,16 @@
             .nav-links {
                 display: none;
             }
-            
+
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .projects-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .contact-form {
                 padding: 2rem;
             }
@@ -437,6 +478,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Partículas de fundo -->
     <div class="particles" id="particles"></div>
@@ -460,7 +502,7 @@
             <h1>Yuri Miranda</h1>
             <p class="subtitle">Desenvolvedor Full Stack</p>
             <p class="description">
-                Transformo ideias em experiências digitais incríveis. Especializado em criar soluções web modernas, 
+                Transformo ideias em experiências digitais incríveis. Especializado em criar soluções web modernas,
                 responsivas e de alto desempenho que impactam positivamente a vida das pessoas.
             </p>
             <div class="cta-buttons">
@@ -486,10 +528,11 @@
                 </div>
                 <a href="https://github.com/Yuri-Miranda-Nunes/Pi-Software" class="btn btn-primary">Ver projeto</a>
             </div>
-            
+
             <div class="project-card">
                 <h3>Ripe Origins</h3>
-                <p>Pagina web para introdução do restaurante Ripe Origins com paginas como cardapio, sobre nos, contato e termos de serviço</p>
+                <p>Pagina web para introdução do restaurante Ripe Origins com paginas como cardapio, sobre nos, contato
+                    e termos de serviço</p>
                 <div class="tech-stack">
                     <span class="tech-tag">HTML</span>
                     <span class="tech-tag">CSS</span>
@@ -498,14 +541,14 @@
                 </div>
                 <a href="#" class="btn btn-primary">Ver projeto</a>
             </div>
-            
+
             <div class="project-card">
                 <h3>EstoqueFacil</h3>
                 <p>Programa desenvolvido para solucionar problemas de estoque de uma empresa ficticia</p>
                 <div class="tech-stack">
                     <span class="tech-tag">C#</span>
                     <span class="tech-tag">MySQL</span>
-                    
+
                 </div>
                 <a href="#" class="btn btn-primary">Ver projeto</a>
             </div>
@@ -526,7 +569,7 @@
                     <span class="skill-item">Flowbite</span>
                 </div>
             </div>
-            
+
             <div class="skill-category">
                 <h3>Backend</h3>
                 <div class="skill-list">
@@ -536,7 +579,7 @@
                     <span class="skill-item">C#</span>
                 </div>
             </div>
-            
+
             <div class="skill-category">
                 <h3>Database & DevOps</h3>
                 <div class="skill-list">
@@ -544,7 +587,7 @@
                     <span class="skill-item">Git</span>
                 </div>
             </div>
-            
+
             <div class="skill-category">
                 <h3>Mobile & Design</h3>
                 <div class="skill-list">
@@ -559,27 +602,23 @@
     <section id="contact">
         <h2 class="section-title">Vamos Conversar</h2>
         <div class="contact-form">
-            <form>
+            <form id="contact-form">
                 <div class="form-group">
                     <label for="name">Nome</label>
                     <input type="text" id="name" name="name" required>
                 </div>
-                
                 <div class="form-group">
                     <label for="email">E-mail</label>
                     <input type="email" id="email" name="email" required>
                 </div>
-                
                 <div class="form-group">
                     <label for="subject">Assunto</label>
                     <input type="text" id="subject" name="subject" required>
                 </div>
-                
                 <div class="form-group">
                     <label for="message">Mensagem</label>
                     <textarea id="message" name="message" rows="5" required></textarea>
                 </div>
-                
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensagem</button>
             </form>
         </div>
@@ -604,17 +643,17 @@
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                
+
                 // Posição aleatória
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.top = Math.random() * 100 + '%';
-                
+
                 // Atraso aleatório na animação
                 particle.style.animationDelay = Math.random() * 6 + 's';
-                
+
                 // Duração aleatória
                 particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
-                
+
                 particlesContainer.appendChild(particle);
             }
         }
@@ -646,10 +685,10 @@
         // Observar elementos
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
-            
+
             const projectCards = document.querySelectorAll('.project-card');
             const skillCategories = document.querySelectorAll('.skill-category');
-            
+
             [...projectCards, ...skillCategories].forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(30px)';
@@ -675,7 +714,7 @@
         function typeWriter(element, text, speed = 100) {
             let i = 0;
             element.innerHTML = '';
-            
+
             function type() {
                 if (i < text.length) {
                     element.innerHTML += text.charAt(i);
@@ -696,6 +735,8 @@
                 }, 1000);
             }
         });
+
     </script>
 </body>
+
 </html>
